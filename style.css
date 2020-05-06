@@ -1,0 +1,143 @@
+:root {
+  --borderWidth: 10px;
+  --borderRadius: 10px;
+  --width: 400px;
+  --height: 225px;
+  --hue: 300;
+  --hueOffset: 120;
+  --level: 50%;
+  --brightness: 75%;
+  --gradient: radial-gradient(
+    circle,
+    hsl(var(--hue), 100%, var(--brightness)) 0%,
+    hsl(calc(var(--hue) + var(--hueOffset)), 100%, var(--level)) 100%
+  );
+  --duration: 5s;
+  --fraction: calc(var(--width) / (var(--width) + var(--height)));
+}
+
+body {
+  background: transparent;
+}
+
+#controller {
+  background: white;
+}
+
+.section {
+  display: inline-block;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+#box {
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--borderRadius);
+  -webkit-mask: -webkit-gradient(
+        linear,
+        left top,
+        left bottom,
+        from(#fff),
+        to(#fff)
+      )
+      top,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) bottom,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) left,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) right;
+  -webkit-mask: linear-gradient(#fff, #fff) top,
+    linear-gradient(#fff, #fff) bottom, linear-gradient(#fff, #fff) left,
+    linear-gradient(#fff, #fff) right;
+  mask: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff))
+      top,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) bottom,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) left,
+    -webkit-gradient(linear, left top, left bottom, from(#fff), to(#fff)) right;
+  mask: linear-gradient(#fff, #fff) top, linear-gradient(#fff, #fff) bottom,
+    linear-gradient(#fff, #fff) left, linear-gradient(#fff, #fff) right;
+  -webkit-mask-size: 100% var(--borderWidth), 100% var(--borderWidth),
+    var(--borderWidth) 100%, var(--borderWidth) 100%;
+  mask-size: 100% var(--borderWidth), 100% var(--borderWidth),
+    var(--borderWidth) 100%, var(--borderWidth) 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  display: none;
+}
+
+#circle {
+  width: var(--width);
+  height: var(--width);
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(
+    circle farthest-side at center,
+    transparent calc(var(--width) * 0.5 - var(--borderWidth)),
+    white calc(var(--width) * 0.5 - var(--borderWidth))
+  );
+  mask-image: radial-gradient(
+    circle farthest-side at center,
+    transparent calc(var(--width) * 0.5 - var(--borderWidth)),
+    white calc(var(--width) * 0.5 - var(--borderWidth))
+  );
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  display: none;
+}
+
+.gradient-border {
+  background: transparent;
+  position: relative;
+}
+
+.gradient-border:after {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--borderWidth));
+  left: calc(-1 * var(--borderWidth));
+  height: calc(100% + var(--borderWidth) * 2);
+  width: calc(100% + var(--borderWidth) * 2);
+  background: var(--gradient);
+  border-radius: calc(2 * var(--borderRadius));
+  -webkit-animation: animatedgradient var(--duration) ease-in-out infinite;
+  animation: animatedgradient var(--duration) ease-in-out infinite;
+  background-size: 200% 200%;
+}
+
+@-webkit-keyframes animatedgradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  calc(0.5 * var(--fraction)) {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  calc(0.5 + 0.5 * var(--fraction)) {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+@keyframes animatedgradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
