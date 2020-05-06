@@ -227,7 +227,7 @@ function copyURL() {
     document.getElementById("brightnessSlider").value +
     "&duration=" +
     document.getElementById("durationSlider").value +
-    "&hideControl=false";
+    "&hideControl=true";
   copyText.select();
   copyText.setSelectionRange(0, 99999); /*For mobile devices*/
   document.execCommand("copy");
