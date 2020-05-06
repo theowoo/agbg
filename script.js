@@ -206,8 +206,8 @@ if (inputDuration !== null) {
 function copyURL() {
   var copyText = document.getElementById("outputURL");
   copyText.value =
-    window.location.origin +
-    "/?shape=" +
+    window.location.origin + window.location.pathname +
+    "?shape=" +
     document.querySelector('input[name="shape"]:checked').value +
     "&width=" +
     document.getElementById("widthSlider").value +
