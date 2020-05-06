@@ -20,8 +20,9 @@ body {
   background: transparent;
 }
 
-#controller {
+.card-panel {
   background: white;
+  display: none;
 }
 
 .section {

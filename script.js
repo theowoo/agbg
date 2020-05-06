@@ -128,7 +128,7 @@ const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
 const inputHideControl = urlParams.get("hideControl");
-if ((inputHideControl !== null) | (inputHideControl !== "true")) {
+if ((inputHideControl == null) | (inputHideControl == "false")) {
   document.getElementById("controller").style.display = "block";
 }
 
